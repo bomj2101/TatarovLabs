@@ -1,0 +1,205 @@
+<?php
+// Устанавливаем кодировку
+header('Content-Type: text/html; charset=utf-8');
+
+// Получаем значение параметра preset
+$preset = isset($_GET['preset']) ? intval($_GET['preset']) : 0;
+
+// Задаем тестовые примеры
+$examples = [
+    1 => file_get_contents('https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%BD%D0%BE%D1%80%D0%B8%D0%BD%D0%B8%D1%85%D0%B8'),
+    2 => file_get_contents('https://www.gazeta.ru/culture/2021/12/16/a_14322589.shtml'),
+    3 => file_get_contents('https://mishka-knizhka.ru/skazki-dlay-detey/zarubezhnye-skazochniki/skazki-alana-milna/vinni-puh-i-vse-vse-vse/#glava-pervaya-v-kotoroy-my-znakomimsya-s-vinni-puhom-i-neskolkimi-pchy')
+];
+
+// Устанавливаем текст по умолчанию
+$text ='<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airbnb Room Example</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-light py-3 border-bottom">
+    <div class="container">
+      <h1 class="text-center">4.1 ✅Апартаменты у метро! Самостоятельный заезд!🏰</h1>
+    </div>
+  </header>
+
+  <!-- Image Section -->
+  <section class="container mt-4">
+    <div class="row">
+      <div class="col-md-8">
+        <img src="https://a0.muscache.com/im/pictures/7f99d680-dbea-4363-a2b2-2cf972108f84.jpg?im_w=960&im_format=avif" class="img-fluid rounded" alt="Main Room Image">
+      </div>
+      <div class="col-md-4">
+        <div class="row mb-2">
+          <div class="col-12">
+            <img src="https://a0.muscache.com/im/pictures/456b1b26-d051-4a17-bc5a-987e65c069eb.jpg?im_w=480&im_format=avif" class="img-fluid rounded" alt="Room Image 1">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <img src="https://a0.muscache.com/im/pictures/f37f74e2-36fc-49f0-b668-256178b316bd.jpg?im_w=480&im_format=avif" class="img-fluid rounded" alt="Room Image 2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Tabs Section -->
+  <section class="container mt-5">
+    <ul class="nav nav-tabs" id="roomTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Описание</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="amenities-tab" data-bs-toggle="tab" data-bs-target="#amenities" type="button" role="tab" aria-controls="amenities" aria-selected="false">Какие удобства вас ждут</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Ответственный сотрудник</button>
+      </li>
+    </ul>
+    <div class="tab-content p-4 border border-top-0" id="roomTabsContent">
+      <!-- Description Tab -->
+      <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+        <h3>Жилье целиком, Moskva, Россия</h3>
+		<p class="text-muted">2 гостя · 1 спальня · 1 кровать · 1 ванная </p>
+        <p>Уютные апартаменты-студия в новом жилом комплексе премиум-класса. В 5-8 минутах пешком станция метро "Водный стадион". До Красной площади на метро 19 минут без пересадок!</p>
+        <p>Студия на севере Москвы, в одном из самых чистых и ухоженных районов. Сразу за домом Невский парк, в 400 метрах вход в Парк-усадьбу "Михалково".</p>
+      </div>
+
+      <!-- Amenities Tab -->
+      <div class="tab-pane fade" id="amenities" role="tabpanel" aria-labelledby="amenities-tab">
+       
+        <ul>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; fill: currentcolor;"><path d="M16 20.33a3.67 3.67 0 1 1 0 7.34 3.67 3.67 0 0 1 0-7.34zm0 2a1.67 1.67 0 1 0 0 3.34 1.67 1.67 0 0 0 0-3.34zM16 15a9 9 0 0 1 8.04 4.96l-1.51 1.51a7 7 0 0 0-13.06 0l-1.51-1.51A9 9 0 0 1 16 15zm0-5.33c4.98 0 9.37 2.54 11.94 6.4l-1.45 1.44a12.33 12.33 0 0 0-20.98 0l-1.45-1.45A14.32 14.32 0 0 1 16 9.66zm0-5.34c6.45 0 12.18 3.1 15.76 7.9l-1.43 1.44a17.64 17.64 0 0 0-28.66 0L.24 12.24c3.58-4.8 9.3-7.9 15.76-7.9z"></path></svg>Wi-Fi
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; fill: currentcolor;"><path d="M26 1a5 5 0 0 1 5 5c0 6.39-1.6 13.19-4 14.7V31h-2V20.7c-2.36-1.48-3.94-8.07-4-14.36v-.56A5 5 0 0 1 26 1zm-9 0v18.12c2.32.55 4 3 4 5.88 0 3.27-2.18 6-5 6s-5-2.73-5-6c0-2.87 1.68-5.33 4-5.88V1zM2 1h1c4.47 0 6.93 6.37 7 18.5V21H4v10H2zm14 20c-1.6 0-3 1.75-3 4s1.4 4 3 4 3-1.75 3-4-1.4-4-3-4zM4 3.24V19h4l-.02-.96-.03-.95C7.67 9.16 6.24 4.62 4.22 3.36L4.1 3.3zm19 2.58v.49c.05 4.32 1.03 9.13 2 11.39V3.17a3 3 0 0 0-2 2.65zm4-2.65V17.7c.99-2.31 2-7.3 2-11.7a3 3 0 0 0-2-2.83z"></path></svg> Кухня
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; fill: currentcolor;"><path d="M16 1a5 5 0 0 1 5 5 5 5 0 0 1 0 10 5 5 0 0 1-4 4.9v4.29A9.04 9.04 0 0 1 23.95 22a8.94 8.94 0 0 1 3.74.81l.31.15v2.33A6.96 6.96 0 0 0 23.95 24a6.88 6.88 0 0 0-6.93 5.87l-.02.15v.1a1 1 0 0 1-.88.87L16 31a1 1 0 0 1-.97-.77l-.02-.12A6.95 6.95 0 0 0 7.97 24 6.96 6.96 0 0 0 4 25.23v-2.31a9.16 9.16 0 0 1 11 2.3V20.9a5 5 0 0 1-4-4.68V16h-.22a5 5 0 0 1 0-10H11v-.22A5 5 0 0 1 16 1zm2.86 14.1a4.98 4.98 0 0 1-5.72 0l-.07.23a3 3 0 1 0 5.85 0zM11 8a3 3 0 1 0 .67 5.93l.23-.07A4.98 4.98 0 0 1 11 11c0-1.06.33-2.05.9-2.86l-.23-.07A3.01 3.01 0 0 0 11 8zm10 0c-.23 0-.45.03-.67.07l-.23.07c.57.8.9 1.8.9 2.86a4.98 4.98 0 0 1-.9 2.86l.23.07A3 3 0 1 0 21 8zm-5 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0-5a3 3 0 0 0-2.93 3.67l.07.23a4.98 4.98 0 0 1 5.72 0l.07-.23A3 3 0 0 0 16 3z"></path></svg>Задний двор
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; fill: currentcolor;"><path d="M26.29 2a3 3 0 0 1 2.96 2.58c.5 3.56.75 7.37.75 11.42s-.25 7.86-.75 11.42a3 3 0 0 1-2.79 2.57l-.17.01H5.7a3 3 0 0 1-2.96-2.58C2.25 23.86 2 20.05 2 16s.25-7.86.75-11.42a3 3 0 0 1 2.79-2.57L5.7 2zm0 2H5.72a1 1 0 0 0-1 .86A80.6 80.6 0 0 0 4 16c0 3.96.24 7.67.73 11.14a1 1 0 0 0 .87.85l.11.01h20.57a1 1 0 0 0 1-.86c.48-3.47.72-7.18.72-11.14 0-3.96-.24-7.67-.73-11.14A1 1 0 0 0 26.3 4zM16 7a9 9 0 1 1 0 18 9 9 0 0 1 0-18zm-5.84 7.5c-.34 0-.68.02-1.02.07a7 7 0 0 0 13.1 4.58 9.09 9.09 0 0 1-6.9-2.37l-.23-.23a6.97 6.97 0 0 0-4.95-2.05zM16 9a7 7 0 0 0-6.07 3.5h.23c2.26 0 4.44.84 6.12 2.4l.24.24a6.98 6.98 0 0 0 6.4 1.9A7 7 0 0 0 16 9zM7 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg>Стиральная машина
+        </ul>
+      </div>
+
+      <!-- Owner Tab -->
+      <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+	  <img src="https://a0.muscache.com/im/pictures/user/87d2ead6-2b9c-4e09-b379-35176b3070eb.jpg?im_w=240&im_format=avif" class="img-fluid rounded" alt="Main Room Image">
+        <p><strong>Хозяин:Алексей</strong></p>
+		<p class="text-muted">5 лет принимает гостей </p>
+         </div>
+    </div>
+	  <ul>
+      <li><a href="reviews.html">Отзывы</a></li>
+      <li><a href="calendar.html">Календарь заезда</a></li>
+	  <li><a href="index.php">Зарегистрируйтесь, чтобы оставить отзыв</a></li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-3 mt-5">
+    <div class="container text-center">
+      &copy; 2025 Airbnb, Inc.·Конфиденциальность Условия Карта сайта Реквизиты компании.
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+ ';
+
+// Если preset задан, загружаем соответствующий текст
+if (array_key_exists($preset, $examples)) {
+    $text = $examples[$preset];
+}
+
+// Функция для обработки текста
+function processText($html) {
+    // Проверяем, что HTML не пустой
+    if (empty($html)) {
+        return [
+            'directSpeech' => 'Нет данных для обработки.',
+            'cleanedText' => '',
+            'links' => '',
+            'formattedHtml' => ''
+        ];
+    }
+
+    // Создаем объект DOMDocument
+    $dom = new DOMDocument();
+    @$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    
+    // 1) Выводим только прямую речь
+    $directSpeech = [];
+    foreach ($dom->getElementsByTagName('p') as $p) {
+        if (strpos($p->nodeValue, '—') === 0) { // Проверяем, начинается ли с длинного тире
+            $directSpeech[] = $p->nodeValue;
+        }
+    }
+
+    // 2) Удаляем лишние пробелы и добавляем пробелы после знаков препинания
+    $cleanedText = preg_replace('/s*-s*/', '-', $html); // Удаляем пробелы между дефисом и словами
+    $cleanedText = preg_replace('/s*([.,:])/', '$1', $cleanedText); // Удаляем пробелы перед знаками препинания
+    $cleanedText = preg_replace('/([.,:])s*/', '$1 ', $cleanedText); // Добавляем пробел после знаков препинания
+
+    // 3) Формируем указатель ссылок
+    $links = [];
+    foreach ($dom->getElementsByTagName('a') as $a) {
+        $links[] = 'Ссылка ' . (count($links) + 1) . ' "' . $a->nodeValue . '"';
+    }
+
+    // 4) Чистка форматирования
+    $allowedTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'table', 'tr', 'td', 'a'];
+
+    foreach ($dom->getElementsByTagName('*') as $node) {
+        if (!in_array($node->nodeName, $allowedTags)) {
+            $node->parentNode->removeChild($node);
+        }
+    }
+
+    return [
+        'directSpeech' => implode('<br>', $directSpeech),
+        'cleanedText' => $cleanedText,
+        'links' => implode('<br>', $links),
+        'formattedHtml' => $dom->saveHTML()
+    ];
+}
+
+
+// Обрабатываем текст, если он не пустой
+$result = processText($text);
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Обработка HTML</title>
+</head>
+<body>
+    <form method="post">
+        <textarea name="html" rows="10" cols="80"><?php echo htmlspecialchars($text); ?></textarea><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <h2>Результаты обработки:</h2>
+    
+    <h3>Прямая речь:</h3>
+    <div><?php echo $result['directSpeech']; ?></div>
+
+    <h3>Очищенный текст:</h3>
+    <div><?php echo nl2br(htmlspecialchars($result['cleanedText'])); ?></div>
+
+    <h3>Указатель ссылок:</h3>
+    <div><?php echo $result['links']; ?></div>
+
+    <h3>Форматированный HTML:</h3>
+    <div><?php echo $result['formattedHtml']; ?></div>
+</body>
+</html>
