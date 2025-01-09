@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Календарь заезда</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    .booked {
+      background-color: #FF5A5F; /* Цвет для забронированных дат */
+      color: white;
+    }
+    a {
+      text-decoration: none;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <h1>Календарь заезда</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Пн</th>
+        <th>Вт</th>
+        <th>Ср</th>
+        <th>Чт</th>
+        <th>Пт</th>
+        <th>Сб</th>
+        <th>Вс</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Неделя 1 -->
+      <tr>
+        <td></td><td></td><td class="booked">1</td><td>2</td><td>3</td><td class="booked">4</td><td>5</td>
+      </tr>
+      <!-- Неделя 2 -->
+      <tr>
+        <td>6</td><td class="booked">7</td><td>8</td><td class="booked">9</td><td>10</td><td>11</td><td class="booked">12</td>
+      </tr>
+      <!-- Неделя 3 -->
+      <tr>
+        <td>13</td><td>14</td><td class="booked">15</td><td>16</td><td class="booked">17</td><td>18</td><td>19</td>
+      </tr>
+      <!-- Неделя 4 -->
+      <tr>
+        <td class="booked">20</td><td>21</td><td>22</td><td class="booked">23</td><td>24</td><td class="booked">25</td><td>26</td>
+      </tr>
+      <!-- Неделя 5 -->
+      <tr>
+        <td>27</td><td class="booked">28</td><td>29</td><td class="booked">30</td><td></td><td></td><td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Ссылка на главную -->
+  <a href="main.html">Вернуться на главную</a>
+</body>
+</html>
